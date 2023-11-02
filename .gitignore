@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+.Python
+db.sqlite3
+.env
+venv/
+virtualenv/
+*.egg-info/
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# HTML
+node_modules/
+*.log
+*.log.*
+*.tmp
+*.tmp.*
+npm-debug.log*
+yarn-error.log
+yarn-debug.log*
+lerna-debug.log*
+
+# Miscellaneous
+*.swp
+*.swo
+*.bak
+*.bak.*
+*.back
+*.backup
+*.tmp
+*.temp
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+*.jar
+*.war
+*.png
+*.txt
