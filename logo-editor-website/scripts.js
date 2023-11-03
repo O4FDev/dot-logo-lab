@@ -135,15 +135,58 @@ function toggleCell(rowIndex, colIndex) {
     renderVisualGrid();
 }
 
-function downloadImage() {
-    const canvas = createCanvas();
-    const imageUrl = canvas.toDataURL('image/png');
-    const a = document.createElement('a');
-    a.href = imageUrl;
-    a.download = 'pattern.png';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+function generateUUID ()
+{
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace( /[xy]/g, function ( c )
+    {
+        var r = Math.random() * 16 | 0, v = c === 'x' ? r : ( r & 0x3 | 0x8 )
+        return v.toString( 16 )
+    } )
+}
+
+
+function downloadImage ()
+{
+    const canvas = createCanvas()
+    const imageUrl = canvas.toDataURL( 'image/png' )
+    const a = document.createElement( 'a' )
+    a.href = imageUrl
+    a.download = 'pattern.png'
+    const base64Image = canvas.toDataURL( 'image/png' );
+
+    // New code to send analytics data
+    const analyticsData = {
+        image_id: generateUUID(), // You'll need to implement generateUUID() or similar
+        user_ip: '', // You would capture this server-side typically
+        user_agent: navigator.userAgent,
+        referral_url: document.referrer || 'direct',
+        image_size: 16, // Calculate this based on the canvas or image data
+        image_format: 'png',
+        canvas_size: { width: canvas.width, height: canvas.height },
+        image_base64: base64Image
+    }
+
+    fetch( 'https://expressjs-postgres-production-d645.up.railway.app/api/analytics', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( analyticsData ),
+    } )
+        .then( response => response.json() )
+        .then( data =>
+        {
+            console.log( 'Analytics data submitted:', data )
+        } )
+        .catch( ( error ) =>
+        {
+            console.error( 'Error:', error )
+        } )
+
+    // Proceed to download the image
+    document.body.appendChild( a )
+    a.click()
+    document.body.removeChild( a )
 }
 
 downloadButton.addEventListener('click', downloadImage);
