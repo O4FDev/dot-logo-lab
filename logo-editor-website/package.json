@@ -4,7 +4,9 @@
   "description": "",
   "main": "scripts.js",
   "scripts": {
-    "build": "esbuild main.js --bundle --outfile=dist/main.bundle.js"
+    "build:js": "esbuild main.js --bundle --outfile=dist/main.bundle.js",
+    "copy": "copyfiles -u 1 index.html styles.css script.js dist",
+    "build": "npm run build:js && npm run copy"
   },
   "keywords": [],
   "author": "",
