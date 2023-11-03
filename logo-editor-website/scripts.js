@@ -152,7 +152,6 @@ function downloadImage ()
     const a = document.createElement( 'a' )
     a.href = imageUrl
     a.download = 'pattern.png'
-    const base64Image = canvas.toDataURL( 'image/png' );
 
     // New code to send analytics data
     const analyticsData = {
@@ -163,7 +162,7 @@ function downloadImage ()
         image_size: 16, // Calculate this based on the canvas or image data
         image_format: 'png',
         canvas_size: { width: canvas.width, height: canvas.height },
-        image_base64: base64Image
+        image_base64: pattern.toString(),
     }
 
     fetch( 'https://expressjs-postgres-production-d645.up.railway.app/api/analytics', {
