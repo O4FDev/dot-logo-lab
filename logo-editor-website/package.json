@@ -4,8 +4,9 @@
   "description": "",
   "main": "scripts.js",
   "scripts": {
-    "build:js": "esbuild main.js --bundle --outfile=dist/main.bundle.js",
-    "build": "npm run build:js && esbuild -o dist static"
+    "build:js": "esbuild main.js --bundle --outfile=dist/main.bundle.js && esbuild scripts.js --bundle --outfile=dist/scripts.js",
+    "build:css": "esbuild styles.css --bundle --outfile=dist/styles.css",
+    "build": "npm run build:js && npm run build:css"
   },
   "keywords": [],
   "author": "",
