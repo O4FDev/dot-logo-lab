@@ -5,8 +5,7 @@
   "main": "scripts.js",
   "scripts": {
     "build:js": "esbuild main.js --bundle --outfile=dist/main.bundle.js",
-    "copy": "copyfiles -u 1 index.html styles.css script.js dist",
-    "build": "npm run build:js && npm run copy"
+    "build": "npm run build:js && esbuild -o dist static"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +14,6 @@
     "@vercel/analytics": "^1.1.1"
   },
   "devDependencies": {
-    "copyfiles": "^2.4.1",
     "esbuild": "^0.19.5"
   }
 }
